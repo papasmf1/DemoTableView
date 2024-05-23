@@ -20,6 +20,7 @@ class ListViewController: UITableViewController {
         user.lastName = "홍"
         user.street = "역삼역"
         user.mobile = "010-123-1234"
+        user.picture = "01"
         self.list.append(user)
         
         user = UserVO()
@@ -27,6 +28,7 @@ class ListViewController: UITableViewController {
         user.lastName = "전"
         user.street = "선릉역"
         user.mobile = "010-222-1234"
+        user.picture = "02"
         self.list.append(user)
         
         user = UserVO()
@@ -34,6 +36,7 @@ class ListViewController: UITableViewController {
         user.lastName = "박"
         user.street = "삼성역"
         user.mobile = "010-333-1234"
+        user.picture = "03"
         self.list.append(user)
         
     }
@@ -51,11 +54,17 @@ class ListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //셀의 컨텐츠를 생성
         let row = self.list[indexPath.row]
+        //UITableViewCell ==> UserCell로 다운 캐스팅
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath)
+            as! UserCell
 
-        // Configure the cell...
-        cell.textLabel?.text = row.lastName
-        cell.detailTextLabel?.text = row.firstName
+        //아웃렛으로 연결
+        cell.lastName?.text = row.lastName
+        cell.firstName?.text = row.firstName
+        cell.street?.text = row.street
+        cell.mobilePhone?.text = row.mobile
+        //이미지출력
+        cell.thumbnail.image = UIImage(named: row.picture!)
 
         return cell
     }

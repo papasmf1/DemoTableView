@@ -9,6 +9,16 @@ import UIKit
 
 class UserCell: UITableViewCell {
 
+    
+    @IBOutlet var lastName: UILabel!
+    @IBOutlet var firstName: UILabel!
+    @IBOutlet var street: UILabel!
+    @IBOutlet var mobilePhone: UILabel!
+    
+    @IBOutlet var thumbnail: UIImageView!
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
