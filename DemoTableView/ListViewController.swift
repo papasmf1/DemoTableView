@@ -9,35 +9,51 @@ import UIKit
 
 class ListViewController: UITableViewController {
 
-    //배열
-    var list = Array<UserVO>()
+    //배열<ResultsData>
+    var list = Array<ResultsData>()
+    
+    //웹사이트와 통신
+    func getRandomUsers() {
+        guard let url = URL(string: "https://randomuser.me/api/?results=20") else {
+            return
+        }
+        let request = URLRequest(url: url)
+        let task = URLSession.shared.dataTask(with: request,
+        completionHandler:
+        { (data, response, error) -> Void in
+            if let error = error {
+                print(error)
+                return
+            }
+            if let data = data {
+                self.list = self.parseJsonData(data: data)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+            
+        })
+        task.resume()
+    }
+    
+    func parseJsonData(data: Data) -> [ResultsData] {
+        var list = [ResultsData]()
+        do {
+            let root = try JSONDecoder().decode(Root.self, from: data)
+            print(root.results)
+            list = root.results
+        } catch {
+            print(error)
+        }
+        return list
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var user = UserVO()
-        user.firstName = "길동"
-        user.lastName = "홍"
-        user.street = "역삼역"
-        user.mobile = "010-123-1234"
-        user.picture = "01"
-        self.list.append(user)
-        
-        user = UserVO()
-        user.firstName = "우치"
-        user.lastName = "전"
-        user.street = "선릉역"
-        user.mobile = "010-222-1234"
-        user.picture = "02"
-        self.list.append(user)
-        
-        user = UserVO()
-        user.firstName = "문수"
-        user.lastName = "박"
-        user.street = "삼성역"
-        user.mobile = "010-333-1234"
-        user.picture = "03"
-        self.list.append(user)
+        //웹서버와 통신 시작
+        self.getRandomUsers()
         
     }
 
@@ -59,12 +75,19 @@ class ListViewController: UITableViewController {
             as! UserCell
 
         //아웃렛으로 연결
-        cell.lastName?.text = row.lastName
-        cell.firstName?.text = row.firstName
-        cell.street?.text = row.street
-        cell.mobilePhone?.text = row.mobile
+        cell.lastName?.text = row.name.last
+        cell.firstName?.text = row.name.first
+        cell.street?.text = row.location.street.name
+        cell.mobilePhone?.text = row.cell
         //이미지출력
-        cell.thumbnail.image = UIImage(named: row.picture!)
+        row.retrieveImage { image, error in
+            //백그라운드 쓰레드로 받아온 이미지를 포그라운드쓰레드가 제어하는 UI에 넘기기
+            DispatchQueue.main.async {
+                cell.thumbnail.image = image
+            }
+        }
+        
+        print("셀 생성을 종료합니다: \(indexPath.row)")
 
         return cell
     }

@@ -15,6 +15,7 @@
 		CE022CD22BFEDCFA00F68592 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE022CD12BFEDCFA00F68592 /* ListViewController.swift */; };
 		CE022CD42BFEDDC000F68592 /* UserVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE022CD32BFEDDC000F68592 /* UserVO.swift */; };
 		CE022CD62BFF004900F68592 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE022CD52BFF004900F68592 /* UserCell.swift */; };
+		CE022CD82BFF1D7600F68592 /* ResultsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE022CD72BFF1D7600F68592 /* ResultsData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		CE022CD12BFEDCFA00F68592 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		CE022CD32BFEDDC000F68592 /* UserVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVO.swift; sourceTree = "<group>"; };
 		CE022CD52BFF004900F68592 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		CE022CD72BFF1D7600F68592 /* ResultsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				CE022CD12BFEDCFA00F68592 /* ListViewController.swift */,
 				CE022CD32BFEDDC000F68592 /* UserVO.swift */,
 				CE022CD52BFF004900F68592 /* UserCell.swift */,
+				CE022CD72BFF1D7600F68592 /* ResultsData.swift */,
 			);
 			path = DemoTableView;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 				CE022CC02BFEDB7000F68592 /* SceneDelegate.swift in Sources */,
 				CE022CD22BFEDCFA00F68592 /* ListViewController.swift in Sources */,
 				CE022CD62BFF004900F68592 /* UserCell.swift in Sources */,
+				CE022CD82BFF1D7600F68592 /* ResultsData.swift in Sources */,
 				CE022CD42BFEDDC000F68592 /* UserVO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
